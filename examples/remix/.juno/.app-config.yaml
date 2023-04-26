@@ -1,0 +1,14 @@
+$extends: ./.app-config.juno.yaml
+
+juno:
+  project:
+    name: "junojs-example-remix"
+    team: "architects"
+  discovery:
+    service:
+      name: "junojs-example-remix"
+    tags:
+      - "gp-service-type:front"
+      - "gp-metrics-type:front"
+      - "gp-team:architects"
+      - "gp-repo:junojs"

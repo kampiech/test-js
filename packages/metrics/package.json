@@ -1,0 +1,40 @@
+{
+  "name": "@grupa-pracuj/metrics",
+  "version": "5.8.49",
+  "description": "Prometheus metrics with serving output under defined path",
+  "keywords": [
+    "prometheus",
+    "metrics",
+    "team-relax",
+    "frontend",
+    "nodejs",
+    "po-mku",
+    "pd-kpi"
+  ],
+  "author": "PRACUJ\\dawid.winiarczyk <dawid.winiarczyk@pracuj.pl>",
+  "homepage": "https://github.com/GrupaPracuj/junoJs/tree/master/packages/metrics#readme",
+  "license": "ISC",
+  "main": "lib/metrics.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://rpm-repo.gp.local/repository/npm/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrupaPracuj/junoJs.git"
+  },
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/GrupaPracuj/junoJs/issues"
+  },
+  "gitHead": "6e872f43dc0b440245892aa80a9279b4e4aa50fc",
+  "dependencies": {
+    "prom-client": "11.5.3"
+  }
+}

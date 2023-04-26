@@ -1,0 +1,40 @@
+{
+  "name": "@grupa-pracuj/logger",
+  "version": "5.8.49",
+  "description": "Application logs for nodejs",
+  "keywords": [
+    "winston",
+    "logs",
+    "team-relax",
+    "frontend",
+    "po-mku",
+    "pd-kpi"
+  ],
+  "author": "PRACUJ\\dawid.winiarczyk <dawid.winiarczyk@pracuj.pl>",
+  "homepage": "https://github.com/GrupaPracuj/junoJs/tree/master/packages/logger#readme",
+  "license": "ISC",
+  "main": "lib/logger.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrupaPracuj/junoJs.git"
+  },
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/GrupaPracuj/junoJs/issues"
+  },
+  "dependencies": {
+    "express-winston": "3.4.0",
+    "winston": "3.8.2",
+    "winston-daily-rotate-file": "3.10.0"
+  }
+}

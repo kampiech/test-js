@@ -1,0 +1,25 @@
+{
+  "name": "@grupa-pracuj/juno-discovery",
+  "version": "5.8.58",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grupa-pracuj/consul": "^5.8.56",
+    "@grupa-pracuj/juno-config": "^5.8.56",
+    "@grupa-pracuj/juno-logger": "^5.8.57",
+    "node-cache": "5.1.2"
+  },
+  "devDependencies": {
+    "@grupa-pracuj/eslint-config-juno": "workspace:*",
+    "@grupa-pracuj/juno-tsconfig": "workspace:*",
+    "typescript": "4.9.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint ./src --ext .js,.ts,.tsx"
+  }
+}

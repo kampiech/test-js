@@ -1,0 +1,26 @@
+{
+  "name": "@grupa-pracuj/client-credentials",
+  "version": "5.8.49",
+  "description": "Get credentials from openid connect server.",
+  "author": "PRACUJ\\dawid.winiarczyk <dawid.winiarczyk@pracuj.pl>",
+  "homepage": "https://github.com/GrupaPracuj/junoJs/tree/master/packages/client-credentials#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrupaPracuj/junoJs.git"
+  },
+  "scripts": {
+    "check-quality": "echo 0"
+  },
+  "bugs": {
+    "url": "https://github.com/GrupaPracuj/junoJs/issues"
+  },
+  "dependencies": {
+    "simple-oauth2": "2.5.2"
+  },
+  "gitHead": "6e872f43dc0b440245892aa80a9279b4e4aa50fc"
+}

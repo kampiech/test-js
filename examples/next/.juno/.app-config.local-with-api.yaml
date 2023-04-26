@@ -1,0 +1,12 @@
+$extends: .app-config.yaml
+
+juno:
+  server:
+    clientCredentials:
+      clientId:
+        $envVar: JUNO_CLIENT_ID
+      clientSecret:
+        $envVar: JUNO_CLIENT_SECRET
+      tokenHost:
+        $envVar: JUNO_TOKEN_HOST
+

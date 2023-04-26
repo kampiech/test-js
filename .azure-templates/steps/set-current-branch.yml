@@ -1,0 +1,8 @@
+steps:
+  - task: Bash@3
+    displayName: 'set current branch'
+    name: setCurrentBranch
+    inputs:
+      targetType: 'inline'
+      script: |
+        echo "##vso[task.setvariable variable=BRANCH_NAME;isOutput=true]$(node -p '"${{ parameters.sourceBranch }}".replace("refs/heads/", "")')"

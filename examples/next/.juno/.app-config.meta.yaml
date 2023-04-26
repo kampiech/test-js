@@ -1,0 +1,2 @@
+generate:
+  - { file: '@types/index.d.ts' }

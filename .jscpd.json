@@ -1,0 +1,10 @@
+{
+  "threshold": 0.1,
+  "ignore": [
+    "**/node_modules/**",
+    "**/coverage/**",
+    "**/*.test.js"
+  ],
+  "absolute": true,
+  "gitignore": true
+}

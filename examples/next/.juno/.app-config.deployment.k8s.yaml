@@ -1,0 +1,10 @@
+$extends: .app-config.deployment.yaml
+
+juno:
+  discovery:
+    service:
+      id:
+        $envVar: JUNO_SERVICE_ID
+    deregister: true
+    check:
+      deregistercriticalserviceafter: "20s"

@@ -1,0 +1,14 @@
+steps:
+  - script: pnpm run release
+    displayName: release
+    env:
+      GH_TOKEN: $(commenting-bot--token)
+
+  - script: pnpm i --ignore-scripts --reporter=silent --frozen-lockfile=false
+    displayName: "install"
+
+  - script: git commit -am "Bump locks in projects [skip ci]" --no-verify || echo 0
+    displayName: commit changes
+
+  - script: git push || echo 0
+    displayName: push changes

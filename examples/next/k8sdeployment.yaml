@@ -1,0 +1,151 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: #{DeploymentAppName}#
+type: Opaque
+data:
+  juno-client-id: '#{JunoClientId}#'
+  juno-client-secret: '#{JunoClientSecret}#'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{DeploymentAppName}#
+  labels:
+    app: #{DeploymentAppName}#
+spec:
+  replicas: #{DeploymentReplicas}#
+  selector:
+    matchLabels:
+      app: #{DeploymentAppName}#
+  template:
+    metadata:
+      name: #{DeploymentAppName}#
+      labels:
+        app: #{DeploymentAppName}#
+        gpappgroup: junojs-examples
+        gpindexname: junojs-examples
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - #{DeploymentAppName}#
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: #{DeploymentAppName}#
+          image: acreuwglobal.azurecr.io/#{ContainerRepository}#:#{Build.BuildId}#
+          workingDir: /opt/app/examples/next/
+          command: [ 'node' ]
+          args: [ 'server/index.mjs' ]
+          ports:
+            - containerPort: 80
+              name: front
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 9000
+            failureThreshold: 1
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: 9000
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 5
+          startupProbe:
+            httpGet:
+              path: /live
+              port: 9000
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: NODE_ENV
+              value: 'production'
+            - name: APP_CONFIG_ENV
+              value: 'deploy.prod.k8s'
+            - name: JUNO_SERVER_PORT
+              value: '80'
+            - name: JUNO_SERVICE_ID
+              value: 'junojs-example-1'
+            - name: JUNO_SERVICE_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: JUNO_SERVICE_PORT
+              value: '80'
+            - name: JUNO_CONSUL_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: JUNO_CONSUL_PORT
+              value: '8500'
+            - name: JUNO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: #{DeploymentAppName}#
+                  key: 'juno-client-id'
+            - name: JUNO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: #{DeploymentAppName}#
+                  key: 'juno-client-secret'
+            - name: JUNO_TOKEN_HOST
+              value: #{JunoTokenHost}#
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: #{DeploymentAppName}#
+  labels:
+    app: #{DeploymentAppName}#
+spec:
+  selector:
+    app: #{DeploymentAppName}#
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: #{DeploymentAppName}#
+  labels:
+    app: #{DeploymentAppName}#
+  annotations:
+    kubernetes.io/ingress.class: #{IngressClass}#
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+spec:
+  tls:
+    - hosts:
+        - "#{Subdomain}#.#{EnvironmentDomain}#"
+      secretName: #{TlsSecretName}#
+  rules:
+    - host: "#{Subdomain}#.#{EnvironmentDomain}#"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: #{DeploymentAppName}#
+                port:
+                  number: 80

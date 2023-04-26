@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+
+  consul:
+    image: consul:latest
+    environment:
+      - 'CONSUL_LOCAL_CONFIG={"services":[{"name": "SkidblandirApi-dev", "address":"skidblandir-6.gp-dev.local", "port": 80},{"name": "Auth-azure-dev", "address":"accounts-dev.gp.local", "port": 80}]}'
+    ports:
+      - '8400:8400'
+      - '8500:8500'
+      - '8600:8600'
+      - '8600:8600/udp'
+
+
+

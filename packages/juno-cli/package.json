@@ -1,0 +1,27 @@
+{
+  "name": "@grupa-pracuj/juno-cli",
+  "version": "5.8.58",
+  "type": "module",
+  "main": "./dist/cli.js",
+  "bin": "./bin/juno-cli.mjs",
+  "dependencies": {
+    "@grupa-pracuj/juno-config": "^5.8.56",
+    "@grupa-pracuj/juno-express": "^5.8.58",
+    "@grupa-pracuj/juno-logger": "^5.8.57",
+    "minimist": "1.2.8",
+    "node-plop": "0.31.1",
+    "plop": "3.1.2"
+  },
+  "devDependencies": {
+    "@grupa-pracuj/eslint-config-juno": "workspace:*",
+    "@grupa-pracuj/juno-tsconfig": "workspace:*",
+    "@types/minimist": "1.2.2",
+    "@types/node": "18.16.1",
+    "copyfiles": "2.4.1",
+    "typescript": "4.9.5"
+  },
+  "scripts": {
+    "build": "tsc && copyfiles -a -u 1 ./src/**/*.hbs ./dist",
+    "lint": "eslint ./src --ext .js,.ts,.tsx"
+  }
+}

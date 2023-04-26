@@ -1,0 +1,17 @@
+parameters:
+  branch: ""
+
+steps:
+  - task: CmdLine@2
+    displayName: "checkout branch ${{ parameters.branch }}"
+    inputs:
+      script: |
+        git update-index --assume-unchanged .npmrc || echo 0
+        git reset --hard
+        git clean -fd
+        git checkout ${{ parameters.branch }}
+        git reset --hard origin/master
+        git pull
+        git tag -d $(git tag)
+        git fetch --tags
+      verbose: false

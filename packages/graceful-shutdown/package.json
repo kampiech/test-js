@@ -1,0 +1,28 @@
+{
+  "name": "@grupa-pracuj/graceful-shutdown",
+  "version": "5.8.49",
+  "description": "Execute action as soon as part of DOM ends rendering",
+  "keywords": [],
+  "author": "PRACUJ\\mateusz.owdziej <mateusz.owdziej@pracuj.pl>",
+  "homepage": "https://github.com/GrupaPracuj/junoJs/tree/master/packages/graceful-shutdown#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "scripts": {},
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrupaPracuj/junoJs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GrupaPracuj/junoJs/issues"
+  },
+  "gitHead": "6e872f43dc0b440245892aa80a9279b4e4aa50fc"
+}

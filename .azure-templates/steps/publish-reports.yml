@@ -1,0 +1,12 @@
+parameters:
+  - name: "projects"
+    type: object
+    default: {}
+
+steps:
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish artifact: reports - reports"
+    inputs:
+      PathtoPublish: reports
+      artifactName: reports
+      parallel: true

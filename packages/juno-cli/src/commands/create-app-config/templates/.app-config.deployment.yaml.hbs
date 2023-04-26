@@ -1,0 +1,40 @@
+$extends: .app-config.yaml
+
+juno:
+  server:
+    port:
+      $parseInt:
+        $envVar: JUNO_SERVER_PORT
+
+    clientCredentials:
+      clientId:
+        $envVar: JUNO_CLIENT_ID
+      clientSecret:
+        $envVar: JUNO_CLIENT_SECRET
+      tokenHost:
+        $envVar: JUNO_TOKEN_HOST
+      scope: application
+
+  discovery:
+    service:
+      host:
+        $envVar: JUNO_SERVICE_HOST
+      port:
+        $parseInt:
+          $envVar: JUNO_SERVICE_PORT
+
+    consul:
+      host:
+        $envVar: JUNO_CONSUL_HOST
+      port:
+        $parseInt:
+          $envVar: JUNO_CONSUL_PORT
+
+    check:
+      http:
+        $substitute: "http://${JUNO_SERVICE_HOST}:${JUNO_SERVICE_PORT}/is-alive"
+      interval: "15s"
+      timeout: "5s"
+
+  logger:
+    pretty: false

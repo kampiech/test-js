@@ -1,0 +1,15 @@
+---
+apiVersion: grupapracuj.pl/v1alpha1
+kind: App
+metadata:
+  name: junojs.examples
+  organization: pracuj
+spec:
+  team: architects
+  environments:
+    dev:
+    beta:
+  ciCd:
+    ado:
+      useProject: Architekci
+  requires:

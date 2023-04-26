@@ -1,0 +1,44 @@
+{
+  "name": "@grupa-pracuj/juno-js",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "packages/*",
+    "hooks/*",
+    "examples/*"
+  ],
+  "description": "Biblioteka do wspólnych funkcjonalności wykorzystywanych przez aplikacje frontowe.",
+  "scripts": {
+    "release": "lerna publish --yes --conventional-graduate --create-release github --no-commit-hooks --ignore-scripts",
+    "prerelease": "lerna publish -m \"prerelease(%s) [prerelease]\" --yes --conventional-prerelease --no-changelog --no-commit-hooks --ignore-scripts",
+    "find-duplicates": "jscpd ./** -t 1 || echo 0",
+    "test": "jest --coverage --updateSnapshot --json --outputFile=./reports/jest.json --passWithNoTests",
+    "test:watch": "jest --watch --runInBand",
+    "prepare": "husky install",
+    "check-quality": "npm run test & npm run find-duplicates & npm run audit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrupaPracuj/junoJs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrupaPracuj/junoJs/issues"
+  },
+  "homepage": "https://github.com/GrupaPracuj/junoJs#readme",
+  "devDependencies": {
+    "@commitlint/cli": "15.0.0",
+    "@commitlint/config-conventional": "15.0.0",
+    "conventional-changelog-eslint": "3.0.9",
+    "husky": "7.0.4",
+    "jest": "27.5.1",
+    "jest-junit": "13.2.0",
+    "jscpd": "3.5.4",
+    "lerna": "5.6.2",
+    "lint-staged": "12.5.0",
+    "rimraf": "3.0.2",
+    "turbo": "1.9.3"
+  }
+}

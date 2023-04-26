@@ -1,0 +1,21 @@
+{
+  "packages": ["packages/*"],
+  "npmClient": "pnpm",
+  "useWorkspaces": true,
+  "version": "5.8.58",
+  "command": {
+    "init": {
+      "exact": true
+    },
+    "publish": {
+      "conventionalCommits": true,
+      "changelogPreset": "eslint",
+      "message": "release(%s) [skip ci] NO_CI",
+      "tagVersionPrefix": "v",
+      "npmClient": "npm",
+      "registry": "https://gppracuj.pkgs.visualstudio.com/_packaging/gp/npm/registry/",
+      "verifyAccess": false,
+      "noCommitHooks": true
+    }
+  }
+}

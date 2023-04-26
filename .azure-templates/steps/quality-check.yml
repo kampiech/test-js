@@ -1,0 +1,27 @@
+---
+steps:
+  - script: pnpm turbo lint
+    continueOnError: true
+    displayName: "check quality"
+
+  - task: PublishTestResults@2
+    displayName: "publish tests results"
+    continueOnError: true
+    inputs:
+      testResultsFiles: |
+        packages/*/reports/jest-report.xml
+      mergeTestResults: true
+
+  - task: PublishCodeCoverageResults@1
+    displayName: "publish code coverage from **/coverage/cobertura-coverage.xml"
+    continueOnError: true
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/packages/*/reports/cobertura-coverage.xml
+
+  - task: PublishCodeCoverageResults@1
+    displayName: "publish code coverage from **/coverage/cobertura-coverage.xml"
+    continueOnError: true
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/pages/*/reports/cobertura-coverage.xml

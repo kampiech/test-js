@@ -1,0 +1,25 @@
+{
+  "name": "@grupa-pracuj/juno-auth",
+  "version": "5.8.57",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grupa-pracuj/juno-config": "^5.8.56",
+    "@grupa-pracuj/juno-logger": "^5.8.57",
+    "simple-oauth2": "5.0.0"
+  },
+  "devDependencies": {
+    "@grupa-pracuj/eslint-config-juno": "workspace:*",
+    "@grupa-pracuj/juno-tsconfig": "workspace:*",
+    "@types/simple-oauth2": "5.0.4",
+    "typescript": "4.9.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint ./src --ext .js,.ts,.tsx"
+  }
+}

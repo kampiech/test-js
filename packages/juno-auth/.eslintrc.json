@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "@grupa-pracuj/eslint-config-juno"
+  ],
+  "root": true
+}

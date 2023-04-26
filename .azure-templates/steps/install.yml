@@ -1,0 +1,3 @@
+steps:
+  - script: pnpm install --ignore-scripts
+    displayName: "install"

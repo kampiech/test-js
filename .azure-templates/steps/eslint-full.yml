@@ -1,0 +1,4 @@
+steps:
+  - script: pnpm run eslint:json
+    continueOnError: true
+    displayName: "eslint"

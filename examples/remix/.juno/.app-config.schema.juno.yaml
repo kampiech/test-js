@@ -1,0 +1,165 @@
+type: object
+additionalProperties: true
+required:
+  - server
+  - discovery
+  - metrics
+  - logger
+
+properties:
+  project:
+    type: object
+    additionalProperties: false
+    required: [name]
+    properties:
+      name:
+        type: string
+      team:
+        type: string
+
+  server:
+    type: object
+    additionalProperties: false
+    required: [port]
+    properties:
+      port:
+        type: number
+      clientCredentials:
+        $ref: '#/definitions/ClientCredentials'
+
+  discovery:
+    type: object
+    additionalProperties: true
+    required: [service, consul, tags]
+    properties:
+      service:
+        $ref: '#/definitions/DiscoveryService'
+      consul:
+        $ref: '#/definitions/DiscoveryConsul'
+      deregister:
+        type: boolean
+      tags:
+        type: array
+        items:
+          type: string
+      check:
+        $ref: '#/definitions/DiscoveryCheck'
+      checks:
+        type: array
+        items:
+          $ref: '#/definitions/DiscoveryCheck'
+
+  metrics:
+    type: object
+    additionalProperties: false
+    required: [accuracies, metricTypes, skip]
+    properties:
+      accuracies:
+        type: array
+        items:
+          type: string
+      metricTypes:
+        type: array
+        items:
+          type: string
+      skip:
+        type: array
+        items:
+          type: string
+
+  logger:
+    type: object
+    additionalProperties: false
+    required: [name, pretty]
+    properties:
+      name:
+        type: string
+      level:
+        type: string
+      redact:
+        type: array
+        items:
+          type: string
+      pretty:
+        type: boolean
+      file:
+        $ref: '#/definitions/LoggerFileConfig'
+      http:
+        $ref: '#/definitions/LoggerHttp'
+
+definitions:
+  ClientCredentials:
+    type: object
+    additionalProperties: false
+    required: [clientId, clientSecret, tokenHost]
+    properties:
+      clientId:
+        type: string
+      clientSecret:
+        type: string
+      tokenHost:
+        type: string
+
+  DiscoveryService:
+    type: object
+    additionalProperties: false
+    required: [ name, host, port ]
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      host:
+        type: string
+      port:
+        type: number
+
+  DiscoveryConsul:
+    type: object
+    additionalProperties: false
+    required: [host, port]
+    properties:
+      host:
+        type: string
+      port:
+        type: number
+      timeout:
+        type: number
+
+  DiscoveryCheck:
+    type: object
+    additionalProperties: false
+    required: [http, interval, timeout]
+    properties:
+      http:
+        type: string
+      interval:
+        type: string
+      timeout:
+        type: string
+      deregistercriticalserviceafter:
+        type: string
+
+  LoggerFileConfig:
+    type: object
+    additionalProperties: false
+    required: [dir]
+    properties:
+      dir:
+        type: string
+      level:
+        type: array
+        items:
+          type: string
+
+  LoggerHttp:
+    type: object
+    additionalProperties: false
+    required: [autoLogging]
+    properties:
+      autoLogging:
+        type: boolean
+      ignore:
+        type: array
+        items:
+          type: string

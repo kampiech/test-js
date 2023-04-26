@@ -1,0 +1,27 @@
+{
+  "name": "example-next",
+  "version": "5.8.58",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon server/with-api.mjs --ignore _next",
+    "build": "next build",
+    "start": "node server/with-api.mjs"
+  },
+  "dependencies": {
+    "@grupa-pracuj/juno-auth": "^5.8.57",
+    "@grupa-pracuj/juno-config": "^5.8.56",
+    "@grupa-pracuj/juno-discovery": "^5.8.58",
+    "@grupa-pracuj/juno-express": "^5.8.58",
+    "@grupa-pracuj/juno-logger": "^5.8.57",
+    "@types/node": "18.14.2",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "next": "13.2.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

@@ -1,0 +1,7 @@
+type: object
+additionalProperties: true
+required:
+  - juno
+properties:
+  juno:
+    $ref: '.app-config.schema.juno.yaml'

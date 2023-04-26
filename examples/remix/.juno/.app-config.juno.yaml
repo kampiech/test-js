@@ -1,0 +1,52 @@
+juno:
+  server:
+    port: 3000
+
+  discovery:
+    service:
+      host: host.docker.internal
+      port: 3000
+    consul:
+      host: localhost
+      port: 8500
+      timeout: 6000
+    check:
+      http: "http://host.docker.internal:3000/is-alive"
+      interval: "15s"
+      timeout: "5s"
+
+  metrics:
+    accuracies:
+      - "ms"
+    metricTypes:
+      - "httpRequestsTotal"
+      - "httpRequestDurationSeconds"
+      - "httpRequestsSummary"
+      - "httpRequestsHistogram"
+      - "httpContentLengthHistogram"
+    skip:
+      - "/juno"
+      - "/health"
+      - "/is-alive"
+      - "/metrics"
+      - "/robots.txt"
+      - "/images"
+      - "/locales"
+      - "/favicon.ico"
+
+  logger:
+    name: "@grupa-pracuj/juno-logger"
+    pretty: true
+    redact:
+      - "req.headers.authorization"
+    http:
+      autoLogging: false
+      ignore:
+        - "/juno"
+        - "/health"
+        - "/is-alive"
+        - "/metrics"
+        - "/robots.txt"
+        - "/images"
+        - "/locales"
+        - "/favicon.ico"

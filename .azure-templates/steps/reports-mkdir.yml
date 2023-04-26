@@ -1,0 +1,9 @@
+steps:
+  - script: mkdir -p reports
+    displayName: root reports
+
+  - script: pnpm -r --parallel exec -- rm -rf reports
+    displayName: "Remove reports folder"
+
+  - script: pnpm -r --parallel exec -- mkdir -p reports
+    displayName: "Create reports folder"

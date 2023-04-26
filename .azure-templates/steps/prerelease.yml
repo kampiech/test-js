@@ -1,0 +1,26 @@
+parameters:
+  distTag: ""
+
+steps:
+  - task: Bash@3
+    name: setDistTag
+    displayName: "set preid and dist-tag variable"
+    inputs:
+      targetType: "inline"
+      script: echo "##vso[task.setvariable variable=DIST_TAG;isOutput=true]$(${{ parameters.distTag }})"
+
+  - script: pnpm run prerelease --preid $(setDistTag.DIST_TAG) --pre-dist-tag $(setDistTag.DIST_TAG)
+    displayName: prerelease
+    env:
+      GH_TOKEN: $(commenting-bot--token)
+
+  - script: pnpm install --ignore-scripts --lockfile-only --prefer-offline
+    displayName: "Bump root lockfile"
+
+  - task: CmdLine@2
+    displayName: "Commit bump root lockfile"
+    inputs:
+      script: |
+        git commit -am "bump root lockfile [skip ci] NO_CI" --no-verify
+        git push
+      verbose: false

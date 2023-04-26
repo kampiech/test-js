@@ -1,0 +1,13 @@
+$extends: ./.app-config.juno.yaml
+
+juno:
+  project:
+    name: "{{ name }}"
+    team: "{{ team }}"
+  discovery:
+    service:
+      name: "{{ name }}"
+    tags:
+      - "gp-service-type:front"
+      - "gp-metrics-type:front"
+      - "gp-team:{{ team }}"
